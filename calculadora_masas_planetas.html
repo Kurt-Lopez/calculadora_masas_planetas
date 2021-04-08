@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de masas en otros planetas</title>
+    <style type="text/css">
+        body
+        {
+            background-color: #040e3b;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        body, html
+        {
+            padding: 0;
+            margin: 0;
+        }
+        #orbitsWrap 
+        {
+           max-width: 300px;
+           height: 300px;
+           margin: 0 auto; /* center container */
+           position: relative;
+        }
+        .orbit
+        {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .orbit .center 
+        {
+    position: absolute;
+    z-index: 9;
+    top: 50%;
+    left: 50%;
+  }
+  .orbit .planet, .orbit .center:before, .orbit .planet:before {
+      position: absolute;
+      content: " ";
+      background:#FF466E;
+      border-radius: 50%; 
+    }
+      .orbit .planet {
+        top: 50%;
+        height: 1px;
+        border-radius: 0;
+        left: 25%;
+        width: 35%;
+      }
+        .orbit .planet:nth-child(2) {
+          width: 27%;
+          left: 33%;
+        }
+        .orbit .planet:nth-child(3) {
+          width: 20%;
+          left: 40%;
+        }
+        .orbit .planet:nth-child(4) {
+          width: 20%;
+          left: 40%;
+        }
+ 
+      .orbit .center:before {
+        width: 32px;
+        height: 32px;
+        margin-top: -16px;
+        margin-left: 16px;
+      }
+ 
+      .orbit .planet:before {
+        top:-12px;
+        left:-24px;
+        width: 24px;
+        height: 24px;
+      }
+        .orbit .planet.outline:before {
+          background:transparent;
+          border:solid 1px #FF466E;
+        }
+        .orbit .planet.highlight:before {
+          border: solid 10px rgba(255, 70, 110, 0.45);
+          top:-14px;
+          left:-14px;
+          width: 10px;
+          height: 10px;
+          -webkit-background-clip: padding-box;
+              background-clip: padding-box;
+        }
+        .orbit .square:before {
+          border-radius: 0;
+        }
+        .orbit .planet {
+      animation-iteration-count:infinite;
+          -webkit-animation-iteration-count:infinite;
+ 
+        animation-timing-function:linear;
+          -webkit-animation-timing-function:linear;
+ 
+        transform-origin: center right;
+          -webkit-transform-origin: center right;
+ 
+        animation-duration:12s;
+          -webkit-animation-duration:12s;
+        animation-name:orbit;
+          -webkit-animation-name:orbit;
+    }
+      .orbit .planet:nth-child(2) {
+        animation-duration:15s;
+        animation-name:orbit2;
+          -webkit-animation-duration:15s;
+          -webkit-animation-name:orbit2;
+      }
+      .orbit .planet:nth-child(3) {
+        animation-duration:20s;
+        animation-name:orbitSmall;
+          -webkit-animation-duration:20s;
+          -webkit-animation-name:orbitSmall;
+      }
+      .orbit .planet:nth-child(4) {
+        animation-duration:9s;
+        animation-name:orbit3;
+          -webkit-animation-duration:9s;
+          -webkit-animation-name:orbit3;
+      }
+ 
+@keyframes orbit {
+  from { transform:rotate(0deg); }
+  to { transform:rotate(-360deg); }
+}
+    @-webkit-keyframes orbit {
+      from { -webkit-transform:rotate(0deg); }
+      to { -webkit-transform:rotate(-360deg); }
+    }
+ 
+@keyframes orbit2 {
+  from { transform:rotate(120deg); }
+  to { transform:rotate(-240deg); }
+}
+  @-webkit-keyframes orbit2 {
+    from { -webkit-transform:rotate(120deg); }
+    to { -webkit-transform:rotate(-240deg); }
+  }
+ 
+@keyframes orbit3 {
+  from { transform:rotate(-160deg); }
+  to { transform:rotate(200deg); }
+}
+  @-webkit-keyframes orbit3 {
+    from { -webkit-transform:rotate(-160deg); }
+    to { -webkit-transform:rotate(200deg); }
+  }
+ 
+@keyframes orbitSmall {
+  from { transform:rotate(-240deg); }
+  to { transform:rotate(120deg); }
+}
+  @-webkit-keyframes orbitSmall {
+    from { -webkit-transform:rotate(-240deg); }
+    to { -webkit-transform:rotate(120deg); }
+  }
+  animation-iteration-count: number|infinite|initial|inherit;
+ 
+animation-timing-function: linear|ease|ease-in|ease-out|cubic-bezier(n,n,n,n)|initial|inherit;
+ 
+transform-origin: x-axis y-axis z-axis|initial|inherit;
+ 
+animation-duration: time;
+ 
+animation-name: name;
+    </style>
+</head>
+<body>
+    <h1>Tu masa en otro planeta</h1>
+    <p>En la tierra pesas distinto que en Marte o Jupiter</p>
+    <script type="text/javascript">
+        let usuario = parseInt(prompt("Cual es tu peso?"));
+        let planeta = parseInt(prompt("Elige tu planeta\n 1 es Mercurio\n 2 es Venus\n 3 es Tierra\n 4 es Marte\n 5 es Júpiter\n 6 es Saturno\n 7 es Urano\n 8 es Neptuno"));
+        let peso = usuario;
+        let g_mercurio = 3.7;
+        let g_venus = 8.8;
+        let g_tierra = 9.8;
+        let g_marte = 3.7;
+        let g_jupiter = 24.8;
+        let g_saturno = 10.4;
+        let g_urano = 8.7;
+        let g_neptuno = 11.2;
+        let peso_final;
+        let nombre;
+            if (planeta == 1)
+            {
+                peso_final = peso * g_mercurio / g_tierra;
+                nombre = "Mercurio";
+            }
+            else if (planeta == 2)
+            {
+                peso_final = peso * g_venus / g_tierra;
+                nombre = "Venus";
+            }
+            else if (planeta == 3)
+            {
+                peso_final = usuario;
+                nombre = "Tierra";
+            }
+            else if (planeta == 4)
+            {
+                peso_final = peso * g_marte / g_tierra;
+                nombre = "Marte";
+            }
+            else if (planeta == 5)
+            {
+                peso_final = peso * g_jupiter / g_tierra;
+                nombre = "Júpiter";
+            }
+            else if (planeta == 6)
+            {
+                peso_final = peso * g_saturno / g_tierra;
+                nombre = "Saturno";
+            }
+            else if (planeta == 7)
+            {
+                peso_final = peso * g_urano / g_tierra;
+                nombre = "Urano";
+            }
+            else if (planeta == 8)
+            {
+                peso_final = peso * g_neptuno / g_tierra;
+                nombre = "Neptuno";
+            }
+            else 
+            {
+                peso_final = document.write("Estás bien <strong>menso</strong>, esa <strong>no es una opción.</strong>");
+            }
+            peso_final = (peso_final.toFixed(2));
+            document.write("Tu peso en " + nombre + " es <strong>" + peso_final + "kg</strong>");
+    </script>
+</body>
+<div id="orbitsWrap"/>
+<ul class="orbit">
+  <li class="center"></li>
+  <li class="planet"></li>
+  <li class="planet highlight"></li>
+  <li class="planet outline square"></li>
+  <li class="planet outline"></li>
+</ul>
+</div>
+</html>
